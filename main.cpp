@@ -57,12 +57,12 @@ void commitpush(std::vector<std::string>& arg) {
         } else {
 
             system("git submodule foreach \"git add . \"");
-            system("git add .");
+            system("git add .");/*
             system((x + "git submodule foreach \"git commit -m \"\"" + arg[3] + "\"\"\"\"").c_str());
             system((x + "git commit -m \"" + arg[3] + "\"").c_str());
             system("git submodule foreach \"git push origin master\"");
             system("git push origin master");
-            
+            */
         }
         
     } else if (arg[2] == "--help") {
