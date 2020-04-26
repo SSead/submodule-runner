@@ -55,9 +55,10 @@ void commitpush(std::vector<std::string>& arg) {
                 << "    --m <commit-message>\n";
 
         } else {
+            system("git submodule foreach \"git add . \"");
+            system("git add .");
             system((x + "git submodule foreach \"git commit -m '" + arg[3] + "' -a \"").c_str());
             system((x + "git commit -m \"" + arg[3] + "\"").c_str());
-            
             system("git submodule foreach \"git push origin master\"");
             system("git push origin master");
             
@@ -86,6 +87,8 @@ void commit(std::vector<std::string>& arg) {
                 << "    --m <commit-message>\n";
 
         } else {
+            system("git submodule foreach \"git add . \"");
+            system("git add .");
             system((x + "git submodule foreach \"git commit -m '" + arg[3] + "' -a \"").c_str());
             system((x + "git commit -m \"" + arg[3] + "\"").c_str());
             
