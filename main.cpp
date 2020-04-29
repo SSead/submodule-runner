@@ -73,6 +73,7 @@ void commitpush(std::vector<std::string>& arg) {
     }
 }
 
+
 void commit(std::vector<std::string>& arg) {
     if (arg.size() == 2) {
 
