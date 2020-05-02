@@ -88,7 +88,7 @@ void commitpush(std::vector<std::string>& arg) {
                 << "    --m <commit-message>\n";
 
         } else {
-            system((x + "git submodule foreach \"git add --all && git commit -m '" + arg[3] + "' && git push\"").c_str());
+            system((x + "git submodule foreach \"(git add --all && git commit -m '" + arg[3] + "' && git push) || :\"").c_str());
             system("git add --all");
             system(("git commit -m \"" + arg[3] + "\"").c_str());
             system("git push");
@@ -96,10 +96,16 @@ void commitpush(std::vector<std::string>& arg) {
         
     } else if (arg[2] == "--help") {
 
+
         std::cout 
             << "Currentry integrated paramaters:\n"
             << "    --m <commit-message>\n";
     
+    } else if (arg[2] == "--amend") {
+        system("git submodule foreach \"(git add --all && git commit --amend --no-edit && git push -f) || :\"");
+        system("git add --all");
+        system("git commit --amend --no-edit");
+        system("git push -f");
     }
 }
 
@@ -117,7 +123,7 @@ void commit(std::vector<std::string>& arg) {
                 << "    --m <commit-message>\n";
 
         } else {
-            system((x + "git submodule foreach \"git add --all && git commit -m '" + arg[3] + "'\"").c_str());
+            system((x + "git submodule foreach \"(git add --all && git commit -m '" + arg[3] + "') || :\"").c_str());
             system("git add --all");
             system(("git commit -m \"" + arg[3] + "\"").c_str());
         }
@@ -132,7 +138,7 @@ void commit(std::vector<std::string>& arg) {
 }
 
 void push(std::vector<std::string>& arg) {
-    system((x+"git submodule foreach \"git push\"").c_str());
+    system((x+"git submodule foreach \"git push || :\"").c_str());
     system("git push");
 }
 
